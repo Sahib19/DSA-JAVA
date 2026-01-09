@@ -74,12 +74,27 @@ public class Sorting {
         }
     }
 
+    public static void insertionSort2(int [] arr){
+        for(int i=1 ; i < arr.length ; i++){
+            int curr = arr[i] ;
+            int prev = (i-1);
+            while(prev >=0 && curr < arr[prev]){
+                arr[prev+1] = arr[prev];
+                prev --;
+            }
+
+            // insertion of current element at correct position
+
+            arr[prev+1] = curr;
+        }
+    }
+
     public static void main(String[] args){
         int [] array = { 5,3,6,7,3};
 //        BubbleSort(array);
 //        System.out.println();
 //        selectionSort(array);
-        insertionSort(array);
+        insertionSort2(array);
         System.out.println("The sorted array is ");
         for(int p = 0 ; p<array.length ; p++){
             System.out.print(array[p]+" ");
