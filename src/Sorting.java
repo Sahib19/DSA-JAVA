@@ -1,4 +1,4 @@
-public class dsa7 {
+public class Sorting {
     public static void BubbleSort(int [] array){
         for(int i=0 ; i<= array.length-2 ; i++){
             int swap =0 ;
