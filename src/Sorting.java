@@ -84,7 +84,6 @@ public class Sorting {
             }
 
             // insertion of current element at correct position
-
             arr[prev+1] = curr;
         }
     }
