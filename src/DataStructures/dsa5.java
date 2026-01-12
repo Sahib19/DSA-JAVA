@@ -1,3 +1,5 @@
+package DataStructures;
+
 public class dsa5 {
     // Code to print all subarray
     public static void Subarray(int [] MainArray){

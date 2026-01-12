@@ -1,3 +1,5 @@
+package DataStructures;
+
 public class dsa4 {
 
     public static int tappedRainWater(int arr[]){

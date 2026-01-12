@@ -18,7 +18,7 @@ This repository reflects my **daily DSA practice**, focusing on clarity, correct
 ## 🧩 Topics Covered
 
 - Arrays
-- Sorting Algorithms
+- DataStructures.Sorting Algorithms
   - Bubble Sort
   - Selection Sort
   - Insertion Sort

@@ -1,3 +1,5 @@
+package DataStructures;
+
 public class SortingExercise {
     public static void printArr(int [] arr){
         System.out.println("The array after sorting is -->");

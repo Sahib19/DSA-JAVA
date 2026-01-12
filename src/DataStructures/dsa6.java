@@ -1,3 +1,5 @@
+package DataStructures;
+
 public class dsa6 {
 
     public static int RotatedSortedArray(int [] nums , int target){

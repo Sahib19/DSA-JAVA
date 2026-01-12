@@ -1,3 +1,5 @@
+package DataStructures;
+
 public class search {
     //time complexity = O(n) -> linear increase with the input size
     public static int linearSearch(int array[] , int element){
