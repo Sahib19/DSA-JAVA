@@ -74,8 +74,15 @@ public class Recursion {
         }
         return lastOccurrence(arr,i-1,key);
     }
+
+    public static int PowerOfX(int x  , int n){
+        if(n == 0 ){
+            return 1;
+        }else{
+            return x*PowerOfX(x,n-1);
+        }
+    }
     public static void main(String[] args ){
-        int [] arr = {1,4,5,1,5,9,9};
-        System.out.println(lastOccurrence(arr,arr.length-1,5));
+        System.out.println(PowerOfX(2,10));
     }
 }
