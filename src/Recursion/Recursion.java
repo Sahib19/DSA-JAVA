@@ -82,6 +82,21 @@ public class Recursion {
             return x*PowerOfX(x,n-1);
         }
     }
+    public static int owerOfX(int x  , int n){
+        if(n == 0 ){
+            return 1;
+        }else{
+            return x*PowerOfX(x,n-1);
+        }
+    }
+    public static int PowerOX(int x  , int n){
+        if(n == 0 ){
+            return 1;
+        }else{
+            return x*PowerOfX(x,n-1);
+        }
+    }
+
     public static void main(String[] args ){
         System.out.println(PowerOfX(2,10));
     }
