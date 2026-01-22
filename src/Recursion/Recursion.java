@@ -82,22 +82,62 @@ public class Recursion {
             return x*PowerOfX(x,n-1);
         }
     }
-    public static int owerOfX(int x  , int n){
-        if(n == 0 ){
-            return 1;
-        }else{
-            return x*PowerOfX(x,n-1);
+
+    //using simpler for loop - time complexity -O(n)
+    // space complexity - O(n)
+    public static String removeDuplicates(String str){
+        if(str == null || str.isEmpty()){
+            return str;
         }
-    }
-    public static int PowerOX(int x  , int n){
-        if(n == 0 ){
-            return 1;
-        }else{
-            return x*PowerOfX(x,n-1);
+        StringBuilder sb = new StringBuilder();
+        char ch = str.charAt(0);
+        sb.append(ch);
+        for(int i = 1 ;  i< str.length() ; i++){
+            ch = str.charAt(i);
+            if(str.charAt(i) != str.charAt(i-1)) {
+            sb.append(ch);
+            }
         }
+        return sb.toString();
     }
 
+    public static String removeAllDuplicates(String str , int idx , StringBuilder sb , boolean [] map ){
+        if(idx == str.length()){
+            return sb.toString();
+        }
+        if(!map[str.charAt(idx) - 'a']){
+            sb.append(str.charAt(idx));
+            map[str.charAt(idx) - 'a'] = true;
+        }
+
+        return removeAllDuplicates(str,idx+1, sb , map);
+    }
+
+    public static int pairingProblem(int n ){
+        if(n ==1 || n==2){
+            return n ;
+        }
+        return (pairingProblem(n-1) )+(n-1)*(pairingProblem(n-2));
+    }
+
+    public static void BinaryStrings(int n , int lastPlace ,String str){
+        // n==3
+        //base case
+        if(n==0){ // String Bane banate ham end me aa chuke hai
+            System.out.println(str);
+            return;
+        }
+
+        // if last place is  0
+        BinaryStrings(n-1 , 0 , str+"0");
+        if(lastPlace == 0){
+            BinaryStrings(n-1 , 1 , str+"1");
+        }
+//        BinaryStrings(n-1 , 1 , str+"1");0 // when we need all the combinations
+
+    }
+    
     public static void main(String[] args ){
-        System.out.println(PowerOfX(2,10));
+        BinaryStrings(3 , 0 , "");
     }
 }
