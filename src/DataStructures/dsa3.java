@@ -72,8 +72,8 @@ public class dsa3 {
         int arr1 [] = {2,4,6,8,10};
 //        Pairing(arr1);
     subArray(arr1);
-    PrefixSumMaxSumSubarray(arr1);
-        int arr2 [] = {-2,-3-2,-5,-3};
-        Kadane(arr2);
+//    PrefixSumMaxSumSubarray(arr1);
+//        int arr2 [] = {-2,-3-2,-5,-3};
+//        Kadane(arr2);
     }
 }

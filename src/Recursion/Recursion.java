@@ -136,8 +136,29 @@ public class Recursion {
 //        BinaryStrings(n-1 , 1 , str+"1");0 // when we need all the combinations
 
     }
-    
+
+    public static void TilingProblem(int n, String str) {
+
+        // invalid case
+        if (n < 0) {
+            return;
+        }
+
+        // correct base case
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        // place vertical tile
+        TilingProblem(n - 1, str + "V");
+
+        // place horizontal tiles
+        TilingProblem(n - 2, str + "HH");
+    }
+
+
     public static void main(String[] args ){
-        BinaryStrings(3 , 0 , "");
+        TilingProblem(4,"");
     }
 }
