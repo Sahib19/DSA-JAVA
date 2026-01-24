@@ -69,11 +69,21 @@ public class RecursionProblemSheet {
 
     }
 
+    public static void towerOfHanoi(int n , String src,String helper , String destination){
+        if(n==1){
+            System.out.println("transfer disk from "+src+" to "+destination);
+            return;
+        }
+        towerOfHanoi(n-1,src,destination,helper);
+        System.out.println("transfer disk from "+src+" to "+destination);
+        towerOfHanoi(n-1,helper,src,destination);
+    }
+
     public static void main(String [] args){
 /*        String [] arr = {"zero","one","two","three","four","five","six","seven","eight","nine","ten"};
 //        NumberToWord(0,"2010" , arr);
 //        System.out.println();
 */
-        Substrings(0,"abcab","");
+    towerOfHanoi(3,"S","H","D");
     }
 }
