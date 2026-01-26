@@ -71,11 +71,11 @@ public class RecursionProblemSheet {
 
     public static void towerOfHanoi(int n , String src,String helper , String destination){
         if(n==1){
-            System.out.println("transfer disk from "+src+" to "+destination);
+            System.out.println("Transfer disk from "+ src +" to "+ destination );
             return;
         }
         towerOfHanoi(n-1,src,destination,helper);
-        System.out.println("transfer disk from "+src+" to "+destination);
+        System.out.println("Transfer disk from "+ src +" to "+ destination );
         towerOfHanoi(n-1,helper,src,destination);
     }
 
