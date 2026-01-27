@@ -49,7 +49,7 @@ public class divideandConqueror {
         }
     }
 
-    public static void quickSort(int arr[] , int si , int ei){
+    public static void quickSort(int[]  arr, int si , int ei){
         if(si>= ei ){
             return;
         }
