@@ -65,6 +65,35 @@ public class ProblemSheet {
             System.out.println("No Majority element present");
         }
     }
+
+    // most optimized approach - Moore voting algorithm
+
+    public static int mooreVotingAlgorithm(int [] arr ){
+        int frq = 0  , ans = 0 ;
+
+        for (int j : arr) {
+            if (frq == 0) {
+                ans = j;
+            }
+
+            if (ans == j) {
+                frq++;
+            } else {
+                frq--;
+            }
+        }
+
+        int count = 0;
+        for(int val : arr){
+            if(val == ans){
+                count++;
+            }
+        }
+
+        if (count > arr.length/2)  return ans;
+        else return -1 ;
+    }
+
     public static void main(String[] args){
         int [] arr = {1,1,2,2,3,3,3,3};
         majorityElement(arr);
