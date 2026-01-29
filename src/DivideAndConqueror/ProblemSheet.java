@@ -1,6 +1,48 @@
 package DivideAndConqueror;
 
+class MajorityElementDivideConqueror{
+   public static int majorityElement(int arr[] , int si , int ei){
+       if(si == ei){
+           return arr[si];
+       }
+
+       int mid = si+(ei-si)/2;
+
+       int leftmajor = majorityElement(arr,si,mid);
+       int rightmajor = majorityElement(arr,mid+1,ei);
+
+       if(leftmajor == rightmajor){
+           return leftmajor;
+       }
+
+       int leftCount = CountInRange(arr , si , ei ,leftmajor);
+       int rightCount = CountInRange(arr , si , ei ,rightmajor);
+
+       //Length of current subarray:
+       int len = (ei - si + 1) / 2;
+       if( leftCount > len){
+           return leftmajor;
+       } else if (rightCount > len) {
+           return rightmajor;
+       }else{
+           return -1 ; // no major element
+       }
+   }
+
+   public static int CountInRange(int [] arr ,int si , int ei , int target){
+       int count = 0 ;
+       for ( int i = si ; i <=ei ; i++){
+           if( arr[i] == target){
+               count++;
+           }
+       }
+       return count;
+   }
+}
+
 public class ProblemSheet {
+
+
     public static void printArr(String[] arr) {
         for( String el : arr){
             System.out.print(el +" " );
@@ -46,8 +88,9 @@ public class ProblemSheet {
             arr[i] = temp[k];
         }
     }
-
-    public static void majorityElement(int [] arr){
+    // Majority element Problem
+    //brute force approach
+   /* public static void majorityElement(int [] arr){
         int [] temp = new int [arr.length+1]; // because 0 bhi consider krna hai
         for (int k : arr) {
             temp[k]++;
@@ -63,6 +106,21 @@ public class ProblemSheet {
         }
         if(!found){
             System.out.println("No Majority element present");
+        }
+    } */
+
+    public static void MajorityElement(int [] arr){
+        for(int el : arr){
+            int freq = 0 ;
+            for(int val : arr){
+                if(el == val ){
+                    freq++;
+                }
+            }
+            if(freq> (arr.length)/2){
+                System.out.println("Majority element is "+el);
+                return;
+            }
         }
     }
 
@@ -94,6 +152,7 @@ public class ProblemSheet {
         else return -1 ;
     }
 
+    // Majority element using recursion + merge sort
     // Pair sum problem
      // Brute force approach
     public static void pairSum(int[] arr ,  int target){
@@ -125,7 +184,10 @@ public class ProblemSheet {
     }
 
     public static void main(String[] args){
-       int [] arr = {1,4,5,6,4};
-       Pairsum(arr,10);
+        int [] arr = {1,2,3,2,2,2,3,3,3,3,3,3};
+     MajorityElementDivideConqueror md = new MajorityElementDivideConqueror();
+        System.out.println(md.majorityElement(arr, 0 , arr.length-1));
     }
 }
+
+
