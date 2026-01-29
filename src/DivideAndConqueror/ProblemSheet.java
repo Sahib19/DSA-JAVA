@@ -94,8 +94,38 @@ public class ProblemSheet {
         else return -1 ;
     }
 
+    // Pair sum problem
+     // Brute force approach
+    public static void pairSum(int[] arr ,  int target){
+        for(int i =0 ; i< arr.length ; i++){
+            for (int j=i+1 ; j< arr.length ; j++){
+                if(arr[i]+arr[j] == target){
+                    System.out.println(arr[i]+" + "+arr[j]+" Make "+target);
+                    return;
+                }
+            }
+        }
+        System.out.println("No such pair exist");
+    }
+
+    //Optimal approch
+    public static void Pairsum( int [] arr , int target){
+        int i = 0 , j=arr.length-1 ;
+        while(i<j){
+            if(arr[i]+arr[j] < target){
+                i++;
+            } else if (arr[i] + arr[j] > target) {
+                j--;
+            }else{
+                System.out.println(arr[i]+" + "+arr[j]+" Make "+target);
+                return;
+            }
+        }
+
+    }
+
     public static void main(String[] args){
-        int [] arr = {1,1,2,2,3,3,3,3};
-        majorityElement(arr);
+       int [] arr = {1,4,5,6,4};
+       Pairsum(arr,10);
     }
 }
