@@ -8,22 +8,22 @@ class MajorityElementDivideConqueror{
 
        int mid = si+(ei-si)/2;
 
-       int leftmajor = majorityElement(arr,si,mid);
-       int rightmajor = majorityElement(arr,mid+1,ei);
+       int leftMajor = majorityElement(arr,si,mid);
+       int rightMajor = majorityElement(arr,mid+1,ei);
 
-       if(leftmajor == rightmajor){
-           return leftmajor;
+       if(leftMajor == rightMajor){
+           return leftMajor;
        }
 
-       int leftCount = CountInRange(arr , si , ei ,leftmajor);
-       int rightCount = CountInRange(arr , si , ei ,rightmajor);
+       int leftCount = CountInRange(arr , si , ei ,leftMajor);
+       int rightCount = CountInRange(arr , si , ei ,rightMajor);
 
        //Length of current subarray:
        int len = (ei - si + 1) / 2;
        if( leftCount > len){
-           return leftmajor;
+           return leftMajor;
        } else if (rightCount > len) {
-           return rightmajor;
+           return rightMajor;
        }else{
            return -1 ; // no major element
        }
