@@ -18,7 +18,7 @@ public class NQueensProblem {
             }
         }
 
-        // middle up diagonal
+        // same column (upwards)
         for(int i = row-1 ; i >= 0 ; i--){
             if(board[i][col] == 'Q'){
                 return false;
