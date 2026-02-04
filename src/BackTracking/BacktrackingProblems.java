@@ -17,9 +17,16 @@ public class BacktrackingProblems {
         // character say no
         printSubset(main , str , idx+1);
     }
+
+    public static void permutation(){
+
+    }
     public static void main(String [] args){
-     String str= "";
-     String main= "abc";
-     printSubset(main , str , 0);
+//     String str= "";
+//     String main= "abc";
+//     printSubset(main , str , 0);
+        String main = "abc";
+        String sb = "";
+        permutation();
     }
 }
