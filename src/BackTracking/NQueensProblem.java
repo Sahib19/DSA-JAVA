@@ -62,6 +62,5 @@ public class NQueensProblem {
         //Calling NQueens
         NQueens(board,0);
 
-
     }
 }
