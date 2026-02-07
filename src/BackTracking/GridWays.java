@@ -19,6 +19,5 @@ public class GridWays {
     public static void main(String [] args){
         int n = 3, m = 3;
         System.out.print(gridWays(0,0,m,n ));
-
     }
 }
