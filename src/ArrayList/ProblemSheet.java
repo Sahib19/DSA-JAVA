@@ -132,14 +132,70 @@ public class ProblemSheet {
 //        return result;
 //    }
 
+    //Most frequent number in an array
+    public static int mostFrequent(int[] nums, int key) {
+        int maxCount = 0 ;
+        int result = -1 ;
+
+        int [] freq = new int [1001]; // we can only accept values where 0 <= nums[i] <= 1000
+
+        for(int i = 0 ; i < nums.length-1 ; i++){
+            if(nums[i] == key){
+                int target = nums[i+1];
+                freq[target]++;
+
+                if(freq[target] > maxCount){
+                    maxCount = freq[target];
+                    result = target ;
+                }
+            }
+        }
+        return result;
+
+    }
+
+    public static ArrayList <Integer> beautifulArray(int n){
+        ArrayList <Integer> list = new ArrayList <>();
+        list.add(1);
+
+        while(list.size() < n){
+            ArrayList <Integer> temp = new ArrayList <>();
+
+            //finding all odd and pushing it in list
+            for(int x : list){
+                int odd = 2*x-1;
+                if(odd <= n){
+                    temp.add(odd);
+                }
+            }
+
+            //finding all odd and pushing it in list
+            for(int x : list){
+                int even = 2*x;
+                if(even <= n){
+                    temp.add(even);
+                }
+            }
+
+            list = temp ;
+        }
+
+        return list;
+    }
+
 
     public static void main(String[] args){
 //        ArrayList <Integer> nums =new ArrayList<>(Arrays.asList(5,5,4,3,2,1));
 //        System.out.println(isMonotonic(nums));
 
-        int [] arr = {1,3,5,3};
-        ArrayList<Integer> resultArr = Lonelynumber(arr);
-        System.out.print(resultArr);
+//        int [] arr = {1,3,5,3};
+//        ArrayList<Integer> resultArr = Lonelynumber(arr);
+//        System.out.print(resultArr);
+
+//        int [] nums = {1,100,3,4,1,6,1,100,3};
+//        System.out.print(mostFrequent(nums,1));
+
+        System.out.print(beautifulArray(6));
 
 
 
