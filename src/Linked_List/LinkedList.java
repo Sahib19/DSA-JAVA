@@ -240,20 +240,71 @@ public class LinkedList {
         size--;
     }
 
+    // Checking whether the linked list palindrome or not
+
+    // Code to find mid of array list
+    public Node findMid( Node head){
+        Node slow = head ;
+        Node fast = head ;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next ; // +1
+            fast = fast.next.next; //+2
+        }
+
+        return slow ; // this is our mid of the Linked List
+
+    }
+
+    public boolean isPalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+
+        //finding mid
+        Node mid = findMid(head);
+
+        // reversing the LL from Mid
+        Node prev = null ;
+        Node curr = mid ;
+        Node next ;
+
+        while(curr != null ){
+            next = curr.next ;
+            curr.next = prev ;
+            prev = curr ;
+            curr = next ;
+        }
+
+        // Using 2 pointer checking palindrome condition
+        Node leftPtr = head ;
+        Node rightPtr = prev ;
+
+        while(rightPtr != null && leftPtr != null){
+            if(leftPtr.data != rightPtr.data){
+                return false;
+            }
+            rightPtr = rightPtr.next;
+            leftPtr = leftPtr.next;
+        }
+        return true;
+
+    }
+
 
 
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
+
+        ll.addFirst(3);
         ll.addFirst(2);
         ll.addFirst(1);
-        ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.addLast(6);
+        ll.addLast(2);
+        ll.addLast(1);
+
         ll.printLL();
 //        ll.reverseLL();
-        ll.deleteNthFromLast(3);
-        ll.printLL();
+        System.out.println(ll.isPalindrome());
 
 
 
