@@ -291,20 +291,116 @@ public class LinkedList {
 
     }
 
+    public static boolean containCycle(){
+        Node slow = head ;
+        Node fast = head ;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next ;
+            fast = fast.next.next;
+
+            if(slow == fast){
+                System.out.println("Oops!! Contain cycle");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Code to Merge two Linked List
+
+    // Find the mid part of the given Linked list
+
+    public Node findMidMS(Node head){
+        Node slow = head ;
+        Node fast = head.next;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow ; // returning the mid back
+    }
+
+    public Node merge(Node left , Node right){
+        // Creation of temp LL
+        Node tempLL = new Node(-1);
+        Node temp = tempLL;
+
+        while(left != null && right != null){
+            if(left.data <= right.data){
+                temp.next = left;
+                left = left.next;
+                temp = temp.next;
+            }else{
+                temp.next = right;
+                right = right.next;
+                temp = temp.next;
+            }
+        }
+
+        while(left != null ){
+            temp.next = left;
+            left = left.next;
+            temp = temp.next;
+        }
+
+        while(right != null){
+            temp.next = right;
+            right = right.next;
+            temp = temp.next;
+        }
+
+        return tempLL.next;
+    }
+
+    public Node mergeSort(Node head){
+        //Base Case
+        if(head == null || head.next == null){
+            return head ;
+        }
+
+        Node mid  = findMidMS(head);
+        Node rightHead = mid.next;
+        mid.next = null ;
+        Node leftPart = mergeSort(head);
+        Node rightPart  = mergeSort(rightHead);
+
+        return merge(leftPart, rightPart);
+    }
+
+    //
+
 
 
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
 
-        ll.addFirst(3);
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(2);
-        ll.addLast(1);
+//        ll.addFirst(3);
+//        ll.addFirst(2);
+//        ll.addFirst(1);
+//        ll.addLast(2);
+//        ll.addLast(1);
+//
+//        ll.printLL();
+////        ll.reverseLL();
+//        System.out.println(ll.isPalindrome());
 
+//        head = new Node (1);
+//        head.next = new Node (2);
+//        head.next.next = new Node (3);
+//        head.next.next.next = head;
+//        System.out.println(containCycle());
+
+        ll.addFirst(1);
+        ll.addFirst(2);
+        ll.addFirst(3);
+        ll.addFirst(4);
         ll.printLL();
-//        ll.reverseLL();
-        System.out.println(ll.isPalindrome());
+        ll.head = ll.mergeSort(head);
+        ll.printLL();
+
 
 
 
