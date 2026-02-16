@@ -370,7 +370,47 @@ public class LinkedList {
         return merge(leftPart, rightPart);
     }
 
-    //
+    // Zig zag Linked list
+
+    // Reversing the second part of LL
+    public Node reverseSecondPart(Node head){
+        Node prev = null ;
+        Node curr = head ;
+        Node next ;
+
+        while(curr!=null){
+            next = curr.next;
+            curr.next = prev ;
+            prev=curr;
+            curr= next;
+        }
+        //the prev will be the head
+        return prev;
+    }
+
+    public Node zigZackLL(){
+        // find the mid
+        Node mid = findMidMS(head);
+        // ll1 with head = head
+        // ll2 with head mid.next;
+        Node Lh = head ;
+        Node Rh = reverseSecondPart(mid.next);
+        mid.next= null ;
+        Node nextL = Lh;
+        Node nextR = Rh;
+
+        while(nextL != null && nextR != null ){
+            nextL = Lh.next;
+            Lh.next = Rh;
+            nextR = Rh.next;
+            Rh.next =nextL;
+
+            Lh = nextL;
+            Rh = nextR;
+
+        }
+         return head;
+    }
 
 
 
@@ -397,8 +437,9 @@ public class LinkedList {
         ll.addFirst(2);
         ll.addFirst(3);
         ll.addFirst(4);
+        ll.addFirst(5);
         ll.printLL();
-        ll.head = ll.mergeSort(head);
+        ll.head = ll.zigZackLL();
         ll.printLL();
 
 
