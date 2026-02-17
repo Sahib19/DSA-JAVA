@@ -94,6 +94,28 @@ public class DoublyLL {
         System.out.println("null");
     }
 
+    public void reverseLL(){
+        if(head == null){
+            System.out.println("Linked list is empty");
+            return;
+        }
+        tail = head;
+        Node prev = null ;
+        Node curr = head ;
+        Node next ;
+
+        while( curr != null){
+            next = curr.next;
+            curr.prev = next ;
+            curr.next =prev ;
+
+            prev = curr ;
+            curr = next ;
+        }
+
+        head = prev ;
+    }
+
     public static void main(String [] args){
         DoublyLL ll = new DoublyLL();
         ll.addFirst(5);
@@ -103,9 +125,7 @@ public class DoublyLL {
         ll.addFirst(1);
         ll.addLast(6);
         ll.printDLL();
-        ll.removeFirst();
-        ll.printDLL();
-        ll.removeLast();
+        ll.reverseLL();
         ll.printDLL();
     }
 }
