@@ -441,6 +441,53 @@ public class LinkedList {
         }
     }
 
+    //Problem 2 -> Swapping of 2 nodes
+    public void swappingNodes( int d1 , int d2 ){
+        if(head == null || d1 == d2){
+            System.out.println("The list is empty");
+            return;
+        }
+
+       // Initialisation the Extra Node variable that we are doing
+        Node prev1 = null , curr1 = head ;
+        Node prev2 = null , curr2 = head ;
+
+        // finding where d1 is located
+        while(curr1 != null && curr1.data != d1){
+            prev1 = curr1 ;
+            curr1 = curr1.next;
+        }
+
+        // finding where d2 is located
+        while(curr2 != null && curr2.data != d2){
+            prev2 = curr2;
+            curr2 = curr2.next;
+        }
+
+        if(curr1 == null || curr2 == null ){ // koi ke value exist nhi krti ll me
+            return;
+        }
+
+        // if d1 is not at head position
+        if(prev1 != null){
+            prev1.next = curr2;
+        }else{
+            head = curr2 ;
+        }
+
+        // if d2 is not at head position
+        if(prev2 != null){
+            prev2.next = curr1;
+        }else{
+            head = curr1 ;
+        }
+
+        // Swap next pointers
+        Node temp = curr1.next;
+        curr1.next = curr2.next;
+        curr2.next = temp;
+
+    }
 
 
     public static void main(String[] args){
@@ -474,7 +521,7 @@ public class LinkedList {
         ll.addFirst(10);
         ll.addFirst(11);
         ll.printLL();
-        ll.delete_N_NodesAfter_M_(3,2);
+        ll.swappingNodes(3,7);
         ll.printLL();
 
 
