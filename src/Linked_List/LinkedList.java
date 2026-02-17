@@ -412,6 +412,35 @@ public class LinkedList {
          return head;
     }
 
+    // Assignments Problems
+    public void delete_N_NodesAfter_M_(int m , int n){
+        if(head == null ){
+            System.out.println("Linked list is Empty");
+            return ;
+        }
+        Node curr = head ;
+        while(curr != null){
+
+
+
+            // taking m nodes
+            for ( int i =1 ; i < m && curr != null ; i++){
+                curr = curr.next;
+            }
+
+            if(curr == null){
+                return;
+            }
+
+            Node temp = curr.next ;
+            for( int j = 1 ; j <= n && temp != curr; j++){
+                temp = temp.next;
+            }
+            curr.next = temp;
+            curr = temp;
+        }
+    }
+
 
 
     public static void main(String[] args){
@@ -438,8 +467,14 @@ public class LinkedList {
         ll.addFirst(3);
         ll.addFirst(4);
         ll.addFirst(5);
+        ll.addFirst(6);
+        ll.addFirst(7);
+        ll.addFirst(8);
+        ll.addFirst(9);
+        ll.addFirst(10);
+        ll.addFirst(11);
         ll.printLL();
-        ll.head = ll.zigZackLL();
+        ll.delete_N_NodesAfter_M_(3,2);
         ll.printLL();
 
 
