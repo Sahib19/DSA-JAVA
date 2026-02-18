@@ -489,6 +489,54 @@ public class LinkedList {
 
     }
 
+    // Odd even linked list problem
+     public void OddEvenLL(){
+        if(head == null ){
+            System.out.println("LL is empty");
+            return;
+        }
+       Node evenHead = null , evenTail = null;
+       Node oddHead = null , oddTail = null;
+       Node curr = head ;
+
+        while(curr != null){
+            Node nextNode = curr.next ;
+            curr.next = null;
+            if(curr.data %2 == 0 ){ // the number is even
+                if(evenHead == null){
+                    // the list is empty
+                    evenHead = evenTail = curr ;
+                }else{
+                    evenTail.next = curr ;
+                    evenTail = evenTail.next;
+                }
+        }else{
+                if(oddHead == null){
+                    oddHead = oddTail = curr ;
+
+                }else{
+                    oddTail.next = curr ;
+                    oddTail = oddTail.next;
+                }
+            }
+            curr = nextNode;
+        }
+
+        if(evenHead == null ){
+            head = oddHead;
+            tail = oddTail;
+        }else if(oddHead == null){
+            head = evenHead;
+            tail = evenTail;
+        }else{
+            head = evenHead;
+            evenTail.next = oddHead;
+            oddTail.next = null ;
+            tail = oddTail;
+        }
+
+    }
+
 
     public static void main(String[] args){
         LinkedList ll = new LinkedList();
@@ -509,19 +557,16 @@ public class LinkedList {
 //        head.next.next.next = head;
 //        System.out.println(containCycle());
 
-        ll.addFirst(1);
+//        ll.addFirst(1);
         ll.addFirst(2);
-        ll.addFirst(3);
+//        ll.addFirst(3);
         ll.addFirst(4);
-        ll.addFirst(5);
+//        ll.addFirst(5);
         ll.addFirst(6);
-        ll.addFirst(7);
-        ll.addFirst(8);
-        ll.addFirst(9);
-        ll.addFirst(10);
-        ll.addFirst(11);
+//        ll.addFirst(7);
+//        ll.addFirst(8);
         ll.printLL();
-        ll.swappingNodes(3,7);
+        ll.OddEvenLL();
         ll.printLL();
 
 
