@@ -72,6 +72,35 @@ public class Stackproblems {
 
 
     }
+
+    public static boolean duplicateParenthesis(String str){
+        Stack <Character> st = new Stack <>();
+        for( int i = 0  ; i<str.length() ; i++){
+            char ch = str.charAt(i);
+
+            if(ch != ')'){
+                st.push(ch);
+            }else{ // agar ch me -> ) aa geya then find its closing by removing element
+                // form stack
+                int count = 0 ;
+                while (!st.isEmpty() && st.peek() != '('){
+                    st.pop();
+                    count++;
+                }
+                if(st.isEmpty()){
+                    //invalid input
+                    System.out.println("Invalid Input");
+                    return false;
+                }
+                if(count < 1){
+                    return true;
+                }
+                st.pop();
+            }
+        }
+            return false;
+
+    }
     public static void main (String [] args){
 
         Stack< Integer> s =  new Stack <>();
@@ -89,7 +118,8 @@ public class Stackproblems {
 //        reverseStack(s);
 //        System.out.println(s);
 
-        ValidParentheses("{}({)()");
+//        ValidParentheses("{}({)()");
+        System.out.println(duplicateParenthesis("((a+b)+(c+d))"));
 
     }
 }
