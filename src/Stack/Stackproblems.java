@@ -125,6 +125,64 @@ public class Stackproblems {
             st.push(i); // pushing the index in the stack
         }
     }
+
+    //
+    public static void NextGreaterOnRight(int[ ] nums , int [] nextGArr){
+        Stack <Integer> st =  new Stack<>();
+
+        for(int i = nums.length-1 ; i >= 0 ; i--){
+            int curr = nums[i];
+
+            while(!st.isEmpty() && st.peek() <= curr){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                nextGArr[i] = -1 ;
+            }else{
+                nextGArr[i] = st.peek();
+            }
+            st.push(curr);
+        }
+    }
+
+    //Next greater on left
+    public static void NextGreaterOnLeft(int [] nums , int [] nextGArr){
+        Stack <Integer> st =  new Stack<>();
+
+        for ( int i =  0 ; i< nums.length ; i++){
+            int curr = nums[i];
+
+            while(!st.isEmpty() && st.peek() <= curr){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                nextGArr[i] = -1 ;
+            }else{
+                nextGArr[i] = st.peek() ;
+
+            }
+            st.push(curr);
+        }
+    }
+     // next Smallest on immediate right
+    public static void NextSmallestOnRight(int[ ] nums , int [] nextGArr){
+        Stack <Integer> st =  new Stack<>();
+
+        for(int i = nums.length-1 ; i >= 0 ; i--){
+            int curr = nums[i];
+
+            while(!st.isEmpty() && st.peek() >= curr){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                nextGArr[i] = -1 ;
+            }else{
+                nextGArr[i] = st.peek();
+            }
+            st.push(curr);
+        }
+    }
+
     public static void main (String [] args){
 
         Stack< Integer> s =  new Stack <>();
@@ -146,7 +204,11 @@ public class Stackproblems {
 //        System.out.println(duplicateParenthesis("((a+b)+(c+d))"));
         int [] arr = {100,80,60,70,60,85,100};
         int [] span = new int [arr.length];
-        StockSpanProblem(arr , span );
+//        StockSpanProblem(arr , span );
+        System.out.println("100,80,60,70,60,85,100");
+//        NextGreaterOnRight(arr,span);
+//        NextGreaterOnLeft(arr,span);
+        NextSmallestOnRight(arr,span);
         for(int i = 0 ; i< span.length ; i++){
             System.out.print(span[i]+" ");
         }
