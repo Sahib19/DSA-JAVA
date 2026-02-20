@@ -37,6 +37,41 @@ public class Stackproblems {
         addElementAtBottom(top,st);
 
     }
+
+    public static void ValidParentheses(String str){
+        Stack <Character> st =  new Stack<>();
+        for(int i = 0 ; i < str.length() ; i++){
+            char ch = str.charAt(i);
+
+            if(ch == '[' || ch == '{' || ch == '(' ){
+                st.push(ch);
+            }else{// if it is a closing bracket
+                if(st.isEmpty()){
+                    System.out.println("Not a valid Parentheses");
+                    return;
+                }else {
+                    if (( ch == ']' && st.peek() == '[' ) ||
+                        ( ch == '}' && st.peek() == '{' ) ||
+                        ( ch == ')' && st.peek() == '(' )  )
+                    {
+                        st.pop();
+                    } else
+                    {
+                    System.out.println("Not a valid Parentheses");
+                    return;
+                    }
+                }
+            }
+        }
+
+        if(st.isEmpty()){
+            System.out.println("It is a valid Parentheses");
+        }else{
+            System.out.println("Not a valid Parentheses");
+        }
+
+
+    }
     public static void main (String [] args){
 
         Stack< Integer> s =  new Stack <>();
@@ -47,13 +82,14 @@ public class Stackproblems {
 //        String str = "abc";
 //        String res = reverseString(str,stack);
 //        System.out.println(res);
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        System.out.println(s);
-        reverseStack(s);
-        System.out.println(s);
+//        s.push(1);
+//        s.push(2);
+//        s.push(3);
+//        System.out.println(s);
+//        reverseStack(s);
+//        System.out.println(s);
 
+        ValidParentheses("{}({)()");
 
     }
 }
