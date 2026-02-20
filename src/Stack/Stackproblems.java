@@ -101,6 +101,30 @@ public class Stackproblems {
             return false;
 
     }
+
+    //Stock span problem -> here we have to find the span of given data
+    public static void StockSpanProblem(int [] arr , int [] span){
+        Stack <Integer> st = new Stack<>();
+        st.push(0);
+        span[0] = 1 ; // always true
+
+        for( int i = 1 ;  i < arr.length ; i++){
+            int currPrice = arr[i];
+
+            while( !st.isEmpty() && arr[st.peek()] <= currPrice ){
+                st.pop();
+            }
+
+            if(st.isEmpty()){
+                span[i] = i+1;
+            }else {
+                int prevHigh = st.peek();
+                int spanValue = i - prevHigh;
+                span[i] = spanValue;
+            }
+            st.push(i); // pushing the index in the stack
+        }
+    }
     public static void main (String [] args){
 
         Stack< Integer> s =  new Stack <>();
@@ -119,7 +143,13 @@ public class Stackproblems {
 //        System.out.println(s);
 
 //        ValidParentheses("{}({)()");
-        System.out.println(duplicateParenthesis("((a+b)+(c+d))"));
+//        System.out.println(duplicateParenthesis("((a+b)+(c+d))"));
+        int [] arr = {100,80,60,70,60,85,100};
+        int [] span = new int [arr.length];
+        StockSpanProblem(arr , span );
+        for(int i = 0 ; i< span.length ; i++){
+            System.out.print(span[i]+" ");
+        }
 
     }
 }
