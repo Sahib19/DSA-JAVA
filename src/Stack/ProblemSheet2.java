@@ -50,7 +50,7 @@ public class ProblemSheet2 {
 
     // Main histogram Code
     public static void MaxAreaRectangle(){
-        int [] num = {2,1,5,6,2,3};
+        int [] num = {4,2};
         int [] rightMinArr = new int [num.length];
         int [] leftMinArr = new int [num.length];
         NextMinFromLeft(num,leftMinArr); //
