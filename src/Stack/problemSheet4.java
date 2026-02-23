@@ -7,8 +7,9 @@ public class problemSheet4 {
         Stack<String> stack = new Stack<>();
         int len = path.length();
         int i = 0;
-
+        StringBuilder dir = new StringBuilder();
         while (i < len) {
+            dir.setLength(0);  // clears the content
 
             // 1️⃣ Skip multiple '/'
             while (i < len && path.charAt(i) == '/') {
@@ -16,39 +17,83 @@ public class problemSheet4 {
             }
 
             // 2️⃣ Extract directory name
-            String dir = "";
 
             while (i < len && path.charAt(i) != '/') {
-                dir += path.charAt(i);
+                dir.append(path.charAt(i));
                 i++;
             }
 
+            String res = dir.toString();
+
             // 3️⃣ Process directory
-            if (dir.equals("") || dir.equals(".")) {
+            if (res.equals("") || res.equals(".")) {
                 continue;
             }
-            else if (dir.equals("..")) {
+            else if (res.equals("..")) {
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
             }
             else {
-                stack.push(dir);
+                stack.push(res);
             }
         }
 
         // 4️⃣ Build final result
-        StringBuilder sb = new StringBuilder();
+        dir.setLength(0);  // clears the content
 
         for (String s : stack) {
-            sb.append("/").append(s);
+            dir.append("/").append(s);
         }
 
-        return sb.isEmpty() ? "/" : sb.toString();
+        return dir.length() == 0 ? "/" : dir.toString();
+    }
+
+    public static String decodeString(String code){
+
+        Stack <String> StringStack = new Stack<>();
+        Stack <Integer> IntegerStack = new Stack<>();
+
+        String curr = "";
+        int num = 0 ;
+        for( char ch : code.toCharArray()){
+            // ya vo ye hai 'Digit hai  '
+            if(Character.isDigit(ch)){ // it mean vo ek digit hai
+                num = num * 10 + (ch - '0');
+            }
+
+            // ya vo ye hai '['
+            else if(ch == '['){
+                StringStack.push(curr);
+                IntegerStack.push(num);
+                curr = "";
+                num=0;
+            }
+
+            // ya vo ye hai ']'
+            else if (ch == ']'){
+                int repeatTimes = IntegerStack.pop();
+                String prev = StringStack.pop();
+
+                StringBuilder temp = new StringBuilder();
+                for(int i = 1 ; i <= repeatTimes ; i++){
+                    temp.append(curr) ;
+                }
+
+                curr = prev+ temp.toString();
+            }
+
+            // ya vo ye hai 'Koi simple alphabet hai'
+            else{
+                curr += ch ;
+            }
+
+        }
+        return curr;
     }
 
     public static void main(String[] args){
-        String str="//home///user/docs/../document";
-       System.out.println( simplifyPath(str));
+        String str="ab3[cc]";
+       System.out.println( decodeString(str));
     }
 }
