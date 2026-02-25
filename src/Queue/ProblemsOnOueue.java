@@ -43,12 +43,25 @@ public class ProblemsOnOueue {
         }
     }
 
+    public static void QueueReversal(Queue <Integer> q1){
+        Stack <Integer> st = new Stack <>();
+
+        while(!q1.isEmpty()){
+            st.push(q1.remove());
+        }
+        while(!st.isEmpty()){
+            q1.add(st.pop());
+        }
+    }
+
     public static void main(String[] args) {
 
 //        NonrepeatingChar("aabccxb");
         Queue<Integer> q1 = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 //        InterleavingQueue(q1);
 //        System.out.println(q1);
+        QueueReversal(q1);
+        System.out.println(q1);
 
 
     }
