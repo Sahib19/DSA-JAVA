@@ -132,6 +132,38 @@ public class Sheet1 {
         }
     }
 
+    public static int heightOfBS  ( Node root){
+        if( root == null){
+            return 0 ;
+        }
+        int leftH = heightOfBS(root.left);
+        int rightH = heightOfBS(root.right);
+
+        return Math.max(leftH,rightH) +1 ;
+    }
+
+    public static int countNodes ( Node root){
+        if( root == null){
+            return 0 ;
+        }
+
+        int leftCount = countNodes (root.left);
+        int rightCount = countNodes (root.right);
+
+        return leftCount+rightCount+1;
+    }
+
+    public static int sumOfNodes( Node root){
+        if(root ==  null){
+            return 0;
+        }
+
+        int leftSum = sumOfNodes(root.left);
+        int rightSum = sumOfNodes( root.right);
+
+        return leftSum+rightSum+root.data;
+    }
+
     public static void main(String[] args) {
 
         int[] nodes = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -150,5 +182,9 @@ public class Sheet1 {
         System.out.println();
         //
         levelOrderTraversal(root);
+        System.out.print("height of Binary tree is = ");
+        System.out.println(heightOfBS(root));
+        System.out.println("No. of nodes in binary tree is "+countNodes(root));
+        System.out.println("The sum of Nodes is = "+sumOfNodes(root));
     }
 }
