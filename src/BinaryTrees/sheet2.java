@@ -1,5 +1,10 @@
 package BinaryTrees;
 
+import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class sheet2 {
 
     static class Node{
@@ -101,6 +106,64 @@ public class sheet2 {
         return true;
     }
 
+    public static class Info2{
+        int hd ; // horizontal Distance
+        Node node;
+
+        Info2( Node node , int hd){
+            this.hd =hd ;
+            this.node =  node ;
+        }
+    }
+
+    public static void topView (Node root){
+        Queue <Info2> q = new LinkedList<>();
+        //Creating a hashmap
+        HashMap <Integer , Node > map = new HashMap <>();
+
+        if(root == null ){
+            System.out.println("The Tree is Empty");
+            return;
+        }
+
+        int min=0 , max = 0 ;
+
+        q.add(new Info2(root ,0));
+        q.add(null);
+
+        while(!q.isEmpty()){
+            Info2 curr = q.remove();
+            if(curr == null){
+                if(q.isEmpty()){
+                    break;
+                }else{
+                    q.add(null);
+                }
+            }else{
+                if(!map.containsKey(curr.hd)){
+                    map.put(curr.hd , curr.node);
+                }
+
+                if(curr.node.left != null){
+                    q.add(new Info2(curr.node.left , curr.hd-1));
+                    min = Math.min(min , curr.hd-1);
+
+                }
+
+                if(curr.node.right != null){
+                    q.add(new Info2(curr.node.right , curr.hd+1));
+                    max = Math.max(max , curr.hd+1);
+                }
+            }
+        }
+
+        // printing the final top view
+        for( int i = min ; i <= max ; i++){
+            System.out.print(map.get(i).data+" ");
+        }
+        System.out.println();
+    }
+
     public static void main(String [] args){
 
         //Formation of Binary Tree -  main tree
@@ -125,6 +188,9 @@ public class sheet2 {
 
         // Subtree in a tree
         System.out.println("Subtree if a tree "+subTree(root,subRoot));
+
+        //Top view of a tree
+        topView(root);
 
     }
 }
