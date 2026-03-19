@@ -14,6 +14,16 @@ public class sheet2 {
         }
     }
 
+    static class Info {
+        int diam;
+        int ht;
+
+        Info(int diam , int ht){
+            this.diam = diam;
+            this.ht = ht;
+        }
+    }
+
     public static int height ( Node root){
         if( root == null){
             return 0 ;
@@ -39,6 +49,23 @@ public class sheet2 {
 
         return Math.max(selfD , Math.max(ld,rd));
     }
+
+    public static Info Diameter ( Node root){
+        if( root == null){
+            return new Info( 0,0);
+        }
+
+        Info leftInfo = Diameter(root.left);
+        Info rightInfo = Diameter(root.right);
+
+        // calculating self diameter
+        int diam = Math.max(leftInfo.ht+rightInfo.ht+1 , Math.max(leftInfo.diam,
+                rightInfo.diam));
+
+        int ht = Math.max(leftInfo.ht , rightInfo.ht) +1 ;
+
+        return new Info(diam,ht);
+    }
     public static void main(String [] args){
 
         //Formation of Binary Tree
@@ -49,10 +76,11 @@ public class sheet2 {
         root.left.right = new Node (5);
         root.right.left = new Node (6);
         root.right.right = new Node (7);
-        root.right.right.right = new Node (7);
+        root.right.right.right = new Node (8);
 
         System.out.println("Height of the tree is "+ height(root));
         System.out.println("Diameter of the tree is "+ diameterOfTree(root));
+        System.out.println("Diameter of the tree is "+ Diameter(root).diam);
 
     }
 }
