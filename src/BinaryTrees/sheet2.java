@@ -50,6 +50,8 @@ public class sheet2 {
         return Math.max(selfD , Math.max(ld,rd));
     }
 
+
+    // Optimised code for O(n)
     public static Info Diameter ( Node root){
         if( root == null){
             return new Info( 0,0);
@@ -66,9 +68,42 @@ public class sheet2 {
 
         return new Info(diam,ht);
     }
+
+    //Subtree of another tree
+    public static boolean subTree( Node root , Node subRoot){
+        // chekcing if the main tree is empty
+        if( root ==  null){
+             return false;
+        }
+
+        if(root.data == subRoot.data){
+            if(isIdentical(root,subRoot)){
+                return true;
+            }
+        }
+
+        return subTree(root.left , subRoot) || subTree(root.right,subRoot);
+    }
+
+    public static boolean isIdentical ( Node root , Node subRoot){
+        if(root == null && subRoot ==  null){
+            return true;
+        }else if(root == null || subRoot == null || root.data != subRoot.data){
+            return false;
+        }
+
+        if(!isIdentical(root.left , subRoot.left)){
+            return false;
+        }
+        if(!isIdentical(root.right , subRoot.right)){
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String [] args){
 
-        //Formation of Binary Tree
+        //Formation of Binary Tree -  main tree
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
@@ -78,9 +113,18 @@ public class sheet2 {
         root.right.right = new Node (7);
         root.right.right.right = new Node (8);
 
+        // Subtree
+        Node subRoot =  new Node (3);
+        subRoot.left = new Node(6);
+        subRoot.right = new Node(7);
+        subRoot.right.right = new Node(8);
+
         System.out.println("Height of the tree is "+ height(root));
         System.out.println("Diameter of the tree is "+ diameterOfTree(root));
         System.out.println("Diameter of the tree is "+ Diameter(root).diam);
+
+        // Subtree in a tree
+        System.out.println("Subtree if a tree "+subTree(root,subRoot));
 
     }
 }
