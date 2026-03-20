@@ -53,6 +53,22 @@ public class Sheet3 {
 
 
     }
+
+    // Using preOrder Transversal
+    // order in preOrder is -  root left right
+    public static void kthNode(Node root , int level , int k){
+        if( root == null ){
+            return;
+        }
+        if(level == k){
+            System.out.print(root.data+" " );
+            return;
+        }
+
+        kthNode(root.left , level+1 , k);
+        kthNode(root.right , level+1 , k);
+    }
+
     public static void main(String[] args){
 
         //Formation of Binary Tree -  main tree
@@ -65,7 +81,11 @@ public class Sheet3 {
         root.right.right = new Node(7);
         root.right.right.right = new Node(8);
 
+        //Iterative approach
         printKthLevelNodes(root, 3);
+System.out.println();
+        //recursive Approach
+        kthNode(root,1 , 3);
 
     }
 }
