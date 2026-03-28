@@ -124,6 +124,19 @@ public class problemSheet {
         return curr;
     }
 
+    public static int maximumPairSum(Node root ){
+        if( root == null){
+            return 0;
+        }
+
+        int leftSum = maximumPairSum(root.left);
+        int rightSum = maximumPairSum(root.right);
+
+        int curr = root.data > 0 ? leftSum + rightSum + root.data : leftSum + rightSum ;
+
+        return curr;
+    }
+
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);
@@ -133,13 +146,22 @@ public class problemSheet {
         root.right.left.left = new Node(4);
         root.right.right = new Node(4);
 
-        ArrayList<String> res = new ArrayList<>();
-        HashMap <String,Integer> map = new HashMap<>();
-        duplicateSubtree(root, res, map);
+//        ArrayList<String> res = new ArrayList<>();
+//        HashMap <String,Integer> map = new HashMap<>();
+//        duplicateSubtree(root, res, map);
+//
+//        for (String re : res) {
+//            System.out.println(re);
+//        }
 
-        for (String re : res) {
-            System.out.println(re);
-        }
+        Node root4 = new Node (-10);
+        root4.left = new Node(9);
+        root4.right = new Node(20);
+        root4.right.left = new Node(15);
+        root4.right.right = new Node(7);
+
+
+        System.out.println(maximumPairSum(root4));
 
 
         //Formation of Binary Tree -  main tree
