@@ -2,20 +2,29 @@ package Revision;
 
 public class revision {
     public static void main(String[] args) {
-        int arr[] = {1, -2, 6, -1, 3};
-        int max = Integer.MIN_VALUE;
+        int[] height = {1, 2, 3, 4, 5, 6};
+        // calculating right and left max array
 
-        int sum = 0;
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
-
-            if(max < sum){
-                max =sum ;
-            }
-            if(sum <= 0 ){
-                sum = 0 ;
-            }
+        int[] leftMax = new int[height.length];
+        leftMax[0] = height[0];
+        for (int i = 1; i < leftMax.length; i++) {
+            leftMax[i] = Math.max(leftMax[i - 1], height[i]);
         }
-        System.out.println(max);
+
+
+        int[] rightMax = new int[height.length];
+        rightMax[height.length - 1] = height[height.length - 1];
+        for (int i = rightMax.length - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(height[i], rightMax[i + 1]);
+        }
+
+        // calculating trapped water
+        int trappedWater = 0;
+        for (int i = 0; i < height.length; i++) {
+            trappedWater += (Math.min(leftMax[i], rightMax[i]) - height[i]);
+        }
+
+        System.out.println(trappedWater);
+
     }
 }
