@@ -36,13 +36,13 @@ public class dsa4 {
 
     public static int BuyAndSellStocks(int prices[]){
         int max_profit = 0 , buyPrice = Integer.MAX_VALUE;
-        for(int i = 0 ; i<prices.length ; i++){
+        for (int price : prices) {
             int profit;
-            if(buyPrice < prices[i]){
-                profit = prices[i] - buyPrice;
-                max_profit = Math.max(profit,max_profit);
-            }else{
-                buyPrice = prices[i];
+            if (buyPrice < price) {
+                profit = price - buyPrice;
+                max_profit = Math.max(profit, max_profit);
+            } else {
+                buyPrice = price;
             }
         }
         return max_profit;
