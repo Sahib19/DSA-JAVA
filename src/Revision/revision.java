@@ -1,22 +1,31 @@
 package Revision;
+import java.util.Arrays;
 
 public class revision {
     public static void main(String[] args) {
-        // Sorting algorithm revison
-        // bubble sort
-        int [] arr = {12,5,36,8,6,4};
-        for(int i = 0 ; i < arr.length - 1 ; i++){
-            for(int j = 0 ; j< arr.length-1-i ; j++){
-                if(arr[j] > arr[j+1]){
-                    int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp ;
-                }
+        // Sorting algorithm revision
+        int [] arr = {4,5,3,2,6,7,8,4,7,4};
+        int max = Integer.MIN_VALUE;
+        for( int ele : arr){
+            if(max < ele ){
+                max = ele ;
             }
         }
 
-        for( int i = 0 ; i < arr.length ; i++){
-            System.out.print(arr[i]+" ");
+        int auxArr [] = new int [max+1];
+
+        for (int k : arr) {
+            auxArr[k]++;
         }
+    int a = 0 ;
+        for( int i = 0 ; i < auxArr.length ; i++){
+            while(auxArr[i] > 0 ){
+                arr[a] = i ;
+                auxArr[i]--;
+                a++;
+            }
+        }
+
+        for (int j : arr) System.out.print(j + " ");
     }
 }
