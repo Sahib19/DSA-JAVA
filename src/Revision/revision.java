@@ -1,31 +1,53 @@
 package Revision;
+
 import java.util.Arrays;
 
 public class revision {
+    public static void PrintSpiral(int [] [] arr){
+       int sr = 0 ;
+       int sc = 0 ;
+       int er = arr.length-1;
+       int ec = arr[0].length-1;
+       System.out.println(er+" "+ec);
+
+       while( sr <= er && sc <= ec){
+
+           // Top row
+           for(int i = sc ; i <= ec ; i++){
+               System.out.print(arr[sr][i]+" ");
+           }
+
+           // right column
+           for(int j =  sr+1 ; j <= er ; j++ ){
+               System.out.print(arr[j][ec]+" ");
+           }
+
+           //bottom row
+           for( int p = ec-1 ; p >= sc ; p-- ){
+               if(sr == er) break ;
+               System.out.print(arr[er][p]+" ");
+           }
+
+           // left column
+           for( int q = er-1 ; q >= sr+1 ; q--){
+               if(sc == ec) break;
+               System.out.print(arr[q][sc]+" ");
+           }
+
+           sr++;
+           sc++;
+           er--;
+           ec--;
+       }
+    }
+
+
     public static void main(String[] args) {
-        // Sorting algorithm revision
-        int [] arr = {4,5,3,2,6,7,8,4,7,4};
-        int max = Integer.MIN_VALUE;
-        for( int ele : arr){
-            if(max < ele ){
-                max = ele ;
-            }
-        }
+        int[][] arr = { {1, 2, 3, 4}
+                       };
+        PrintSpiral(arr);
 
-        int auxArr [] = new int [max+1];
 
-        for (int k : arr) {
-            auxArr[k]++;
-        }
-    int a = 0 ;
-        for( int i = 0 ; i < auxArr.length ; i++){
-            while(auxArr[i] > 0 ){
-                arr[a] = i ;
-                auxArr[i]--;
-                a++;
-            }
-        }
 
-        for (int j : arr) System.out.print(j + " ");
     }
 }
