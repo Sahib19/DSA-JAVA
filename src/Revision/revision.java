@@ -1,7 +1,5 @@
 package Revision;
 
-import java.util.Arrays;
-
 public class revision {
     public static void PrintSpiral(int [] [] arr){
        int sr = 0 ;
