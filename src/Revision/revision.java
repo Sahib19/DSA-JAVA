@@ -1,46 +1,35 @@
 package Revision;
 
 public class revision {
-    public static String tuc(String str) {
+    public static String sc(String str) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Character.toUpperCase(str.charAt(0)));
-
-        for (int i = 1; i < str.length(); i++) {
-            if (str.charAt(i) == ' ' && i < str.length() - 1) {
-                sb.append(str.charAt(i));
-                i++;
-                sb.append(Character.toUpperCase(str.charAt(i)));
-            } else {
-                sb.append(str.charAt(i));
-            }
-        }
-        return sb.toString();
-    }
-
-    public static String tuc2(String str) {
-        boolean flag = false;
-        StringBuilder sb = new StringBuilder();
-        sb.append(Character.toUpperCase(str.charAt(0)));
+        int count = 1 ;
         for( int i = 1 ; i < str.length() ; i++){
             char curr = str.charAt(i);
-            if(curr == ' '){
-                flag = true ;
-                sb.append(curr);
+            if(curr == str.charAt(i-1)){
+                count++;
             }else{
-                if(flag){
-                    sb.append(Character.toUpperCase(curr));
-                    flag = false;
-                }else{
-                    sb.append(curr);
+                sb.append(str.charAt(i-1));
+                if(count > 1){
+                    sb.append(count);
                 }
+                count =1;
             }
+        }
+
+        // exlpicitly handling the last one
+        sb.append(str.charAt(str.length()-1));
+        if(count >1){
+            sb.append(count);
         }
 
         return sb.toString();
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        String str = "aaabbbccdd";
+        System.out.println(str.indexOf('z'));
 
 
     }
