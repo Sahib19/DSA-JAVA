@@ -1,36 +1,22 @@
 package Revision;
 
 public class revision {
-    public static String sc(String str) {
-        StringBuilder sb = new StringBuilder();
-        int count = 1 ;
-        for( int i = 1 ; i < str.length() ; i++){
-            char curr = str.charAt(i);
-            if(curr == str.charAt(i-1)){
+    public static int cv(String str) {
+        String vowels = "aieou";
+        int count = 0 ;
+        for (int i = 0; i < str.length(); i++) {
+            char ch = Character.toLowerCase(str.charAt(i));
+            if (vowels.indexOf(ch) != -1) {
                 count++;
-            }else{
-                sb.append(str.charAt(i-1));
-                if(count > 1){
-                    sb.append(count);
-                }
-                count =1;
             }
         }
-
-        // exlpicitly handling the last one
-        sb.append(str.charAt(str.length()-1));
-        if(count >1){
-            sb.append(count);
-        }
-
-        return sb.toString();
+        return count;
     }
 
 
     public static void main(String[] args) {
-        String str = "aaabbbccdd";
-        System.out.println(str.indexOf('z'));
-
+        String str = "Sahieoub";
+        System.out.print(cv(str));
 
     }
 }
