@@ -1,26 +1,34 @@
 package Revision;
 
+import java.util.*;
+
 public class Revision2 {
 
-    // this program will give then nth term
-//    public static int tiling( int n) { // 2
-//
-//    }
-
-    public static int pow2( int x , int n){
-        int ans = 1 ;
-        while(n > 0 ){
-            if( (n&1) != 0 ){
-                ans = ans *x ;
-            }
-            x = x*x;
-            n=n>>1;
+    public static String ntos(int num, String [] map) {
+        if (num == 0) {
+            return "";
         }
-        return ans;
+        String res = ntos(num/10 , map );
+        int last = num % 10;
+        return res+map[last]+" ";
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 3, 6};
-        System.out.println(pow2(2,10));
+        String[] map = {
+                "zero",
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine"
+        };
+        StringBuilder sb = new StringBuilder();
+        System.out.println(ntos(3024654,map));
+
+
     }
 }
