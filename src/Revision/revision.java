@@ -1,22 +1,24 @@
 package Revision;
 
-public class revision {
-    public static int cv(String str) {
-        String vowels = "aieou";
-        int count = 0 ;
-        for (int i = 0; i < str.length(); i++) {
-            char ch = Character.toLowerCase(str.charAt(i));
-            if (vowels.indexOf(ch) != -1) {
-                count++;
-            }
-        }
-        return count;
+abstract class a {
+    int data = 5 ;
+    abstract void meth1();
+
+    public void meth2(){
+        System.out.println("hello");
+    }
+}
+
+class b extends a{
+    public void meth1(){
+        System.out.println("lelo podina");
     }
 
+}
 
+public class revision {
     public static void main(String[] args) {
-        String str = "Sahieoub";
-        System.out.print(cv(str));
-
+       a obj = new b();
+       obj.meth2();
     }
 }
