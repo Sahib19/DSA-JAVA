@@ -1,34 +1,20 @@
 package Revision;
 
-import java.util.*;
-
 public class Revision2 {
-
-    public static String ntos(int num, String [] map) {
-        if (num == 0) {
-            return "";
+    public static void subset( String main , String helper , int idx){
+        if( idx == main.length()){
+            System.out.println(helper);
+            return;
         }
-        String res = ntos(num/10 , map );
-        int last = num % 10;
-        return res+map[last]+" ";
+
+        char ch = main.charAt(idx);
+        subset(main , helper+ch , idx+1);
+        subset(main , helper , idx+1);
     }
 
     public static void main(String[] args) {
-        String[] map = {
-                "zero",
-                "one",
-                "two",
-                "three",
-                "four",
-                "five",
-                "six",
-                "seven",
-                "eight",
-                "nine"
-        };
-        StringBuilder sb = new StringBuilder();
-        System.out.println(ntos(3024654,map));
-
+        subset("abc" , "" , 0);
+        System.out.println("abc".length());
 
     }
 }
