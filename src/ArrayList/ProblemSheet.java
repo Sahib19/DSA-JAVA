@@ -195,7 +195,7 @@ public class ProblemSheet {
 //        int [] nums = {1,100,3,4,1,6,1,100,3};
 //        System.out.print(mostFrequent(nums,1));
 
-        System.out.print(beautifulArray(6));
+        System.out.print(beautifulArray(8));
 
 
 
