@@ -395,49 +395,88 @@ public class Revision2 {
 
     }
 
-    public void SwapNodes(int n1 , int n2){
-        if( head == null || n1 == n2){ // no need to swap the nodes
+    public void SwapNodes(int n1, int n2) {
+        if (head == null || n1 == n2) { // no need to swap the nodes
             System.out.println("LL is empty");
             return;
         }
 
-        Node prev1 = null ;
-        Node curr1 = head ;
-        while (curr1 != null && curr1.data !=  n1){
+        Node prev1 = null;
+        Node curr1 = head;
+        while (curr1 != null && curr1.data != n1) {
             prev1 = curr1;
             curr1 = curr1.next;
         }
 
-        Node prev2 = null ;
+        Node prev2 = null;
         Node curr2 = head;
-        while( curr2 != null && curr2.data != n2 ){
+        while (curr2 != null && curr2.data != n2) {
             prev2 = curr2;
             curr2 = curr2.next;
         }
 
-        if(curr1 == null|| curr2 ==  null  ){
+        if (curr1 == null || curr2 == null) {
             System.out.println("Element not found");
             return;
         }
 
-        if( prev1 == null){
+        if (prev1 == null) {
             head = curr2;
-        }else{
+        } else {
             prev1.next = curr2;
         }
 
-        if( prev2 == null){
+        if (prev2 == null) {
             head = curr1;
-        }else{
-            prev2.next =curr1;
+        } else {
+            prev2.next = curr1;
         }
 
-        //waping agge walli nodes
+        //Swaping agge walli nodes
         Node tmp = curr1.next;
         curr1.next = curr2.next;
-        curr2.next = tmp ;
+        curr2.next = tmp;
 
     }
+
+    public void oddEven() {
+        if (head == null) {
+            System.out.println("LL is empty");
+            return;
+        }
+
+        Node evenHead = null, evenTail = null;
+        Node oddHead = null, oddTail = null;
+        Node curr = head;
+
+        while (curr != null) {
+            if (curr.data % 2 == 0) { // it mean node contain even data
+                if (evenHead == null) { // first element of even ll
+                    evenHead = evenTail = curr;
+                } else {
+                    evenTail.next = curr;
+                    evenTail = curr;
+                }
+                curr = curr.next;
+            }else{ // it contain odd data
+                if( oddHead == null){
+                    oddHead = oddTail = curr;
+                }else{
+                    oddTail.next = curr ;
+                    oddTail = curr;
+                }
+                curr = curr.next;
+            }
+        }
+
+        // once we have even ll is odd ll
+        head = evenHead;
+        evenTail.next = oddHead ;
+        tail = oddTail;
+        oddTail.next = null ;
+    }
+
+    
 
     public static void main(String[] args) {
         Revision2 ll = new Revision2();
@@ -451,7 +490,7 @@ public class Revision2 {
         ll.addLast(8);
         ll.addLast(8);
         ll.printLL();
-        ll.SwapNodes(2,6);
+        ll.oddEven();
         ll.printLL();
     }
 }
