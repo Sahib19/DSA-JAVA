@@ -395,6 +395,50 @@ public class Revision2 {
 
     }
 
+    public void SwapNodes(int n1 , int n2){
+        if( head == null || n1 == n2){ // no need to swap the nodes
+            System.out.println("LL is empty");
+            return;
+        }
+
+        Node prev1 = null ;
+        Node curr1 = head ;
+        while (curr1 != null && curr1.data !=  n1){
+            prev1 = curr1;
+            curr1 = curr1.next;
+        }
+
+        Node prev2 = null ;
+        Node curr2 = head;
+        while( curr2 != null && curr2.data != n2 ){
+            prev2 = curr2;
+            curr2 = curr2.next;
+        }
+
+        if(curr1 == null|| curr2 ==  null  ){
+            System.out.println("Element not found");
+            return;
+        }
+
+        if( prev1 == null){
+            head = curr2;
+        }else{
+            prev1.next = curr2;
+        }
+
+        if( prev2 == null){
+            head = curr1;
+        }else{
+            prev2.next =curr1;
+        }
+
+        //waping agge walli nodes
+        Node tmp = curr1.next;
+        curr1.next = curr2.next;
+        curr2.next = tmp ;
+
+    }
+
     public static void main(String[] args) {
         Revision2 ll = new Revision2();
         ll.addLast(1);
@@ -407,7 +451,7 @@ public class Revision2 {
         ll.addLast(8);
         ll.addLast(8);
         ll.printLL();
-        ll.deleteNAfterM(3,2);
+        ll.SwapNodes(2,6);
         ll.printLL();
     }
 }
