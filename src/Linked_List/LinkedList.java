@@ -310,7 +310,7 @@ public class LinkedList {
 
     // Code to Merge two Linked List
 
-    // Find the mid part of the given Linked list
+    // Find the midPart oomfoo the given Linked list
 
     public Node findMidMS(Node head){
         Node slow = head ;

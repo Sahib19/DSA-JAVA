@@ -60,7 +60,7 @@ public class DoublyLL {
 
         head = head.next;
         head.prev = null ;
-        // no need to break teh connection between the node that is going
+        // no need to break the connection between the node that is going
         // to delete next with  its next node
         size--;
     }
