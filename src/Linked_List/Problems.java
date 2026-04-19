@@ -2,18 +2,33 @@ package Linked_List;
 import java.util.*;
 
 public class Problems {
-    public static String reverseString(String str , Stack <Character> st ){
-        if(str.isEmpty()){
-            return "";
+    public static void bottomAdd(Stack <Integer> st , int  ele){
+        if(st.isEmpty()){
+            st.push(ele);
+            return;
         }
 
-        char curr = str.charAt(0);
+        int curr = st.pop();
+        bottomAdd(st ,  ele) ;
         st.push(curr);
-        return reverseString(str.substring(1) , st) + st.pop();
+    }
+
+    public static void reverseStack(Stack <Integer> st){
+        if(st.isEmpty()){
+            return;
+        }
+        int curr = st.pop();
+        reverseStack(st);
+        bottomAdd(st,curr);
     }
     public static void main(String[] args) {
-        Stack <Character> st = new Stack <>();
-        System.out.println(reverseString("sahib" ,st));
+        Stack <Integer> st = new Stack <>();
+        st.push(1);
+        st.push(2);
+        st.push(3);
+        System.out.println(st);
+        reverseStack(st);
+        System.out.println(st);
 
 
 
