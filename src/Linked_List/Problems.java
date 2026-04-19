@@ -1,37 +1,35 @@
 package Linked_List;
+
 import java.util.*;
 
 public class Problems {
-    public static void stockSpan (int [] stocks){
-        Stack < Integer> st = new Stack<>();
-        ArrayList <Integer> res = new ArrayList<>();
-        res.add(1);
-        st.push(0);
+    public static boolean validParenthesis(Stack<Character> st, String str) {
 
-        for( int i = 1 ; i < stocks.length ; i++){
-            int curr = stocks[i];
-            while(!st.isEmpty() && stocks[st.peek()] <= curr ){
-                st.pop();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == '{' || ch == '[' || ch == '(') {
+                st.push(ch);
+            } else {
+                if(st.isEmpty()){
+                    return false;
+                }
+                else if (ch == '}' && st.peek() == '{'
+                        || ch == ']' && st.peek() == '['
+                        || ch == ')' && st.peek() == '(') {
+                    st.pop();
+                } else {
+                    return false;
+                }
             }
-            if(st.isEmpty()){
-                res.add(i+1);
-            }else {
-                res.add(i - st.peek());
-            }
-            st.push(i);
         }
 
-        System.out.println(res);
+        return st.isEmpty();
     }
 
     public static void main(String[] args) {
-        Stack <Integer> st = new Stack <>();
-        int [] stocks = {100,80,60,70,60,85,100};
-        stockSpan(stocks);
-
-
-
-
+        Stack<Character> st = new Stack<>();
+        System.out.println(validParenthesis(st, "{["));
 
 
     }
