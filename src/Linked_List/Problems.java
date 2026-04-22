@@ -1,62 +1,48 @@
 package Linked_List;
+
 import java.util.*;
 
 public class Problems {
-    public static class Node {
-        char data;
-        Node next;
 
-        Node (char data){
-            this.data = data;
-            this.next = null;
-        }
-    }
-
-    public static Node head;
-
-    public void printLL(){
-        Node temp =  head ;
-        while (temp != null){
-            System.out.print(temp.data+" -> ");
-            temp = temp.next;
-        }
-        System.out.println("null");
-    }
-
-    public void checkPalindrome(){
-        if(head == null){
-            System.out.println("LL is empty");
-        }
-
-        Stack <Character> st = new Stack <>();
-        Node temp = head ;
-        while(temp != null){
-            st.push(temp.data);
-            temp =  temp.next ;
-        }
-
-        temp = head ;
-        while(temp != null){
-            if(temp.data != st.pop()){
-                System.out.println("Not a Palindrome");
-                return;
+    public static void simplyfyPath(String str) {
+        Stack<String> st = new Stack<>();
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        while (i < str.length()) {
+            // skipping the '/'
+            while (i < str.length() && str.charAt(i) == '/') {
+                i++;
             }
-            temp = temp.next;
+
+            // now extracting the main thing
+            while (i < str.length() && str.charAt(i) != '/') {
+                sb.append(str.charAt(i));
+                i++;
+            }
+
+            String res = sb.toString();
+            sb.setLength(0);
+
+            if (res.isEmpty() || res.equals(".")) {
+                continue;
+            } else if (res.equals("..")) {
+                if(!st.isEmpty()){
+                    st.pop();
+                }
+            }else{
+                st.push(res);
+            }
         }
 
-        System.out.println("Palindrome");
+        sb.setLength(0);
+        for (String s : st) {
+            sb.append('/').append(s);
+        }
+
+        System.out.println(sb.toString());
     }
-     public static void main(String [] args){
-        Problems ll = new Problems ();
-        Node n1 = new Node ('s');
-        head = n1 ;
-        Node n2 = new Node ('a');
-        Node n3 = new Node ('z');
-        Node n4 = new Node ('s');
-        n1.next = n2 ;
-        n2.next = n3 ;
-        n3.next = n4 ;
-        ll.printLL();
-        ll.checkPalindrome();
-     }
+
+    public static void main(String[] args) {
+        simplyfyPath("/home/user/../docs");
+    }
 }
