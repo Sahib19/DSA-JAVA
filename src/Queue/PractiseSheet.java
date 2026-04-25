@@ -70,7 +70,7 @@ public class PractiseSheet {
             result.add(arr[q1.peekFirst()]);
 
             // removing that element that does not belong to that window
-            while(q1.size() > 0 && q1.peekFirst() <= i-k){
+            while(!q1.isEmpty() && q1.peekFirst() <= i-k){
                 q1.removeFirst();
             }
 
