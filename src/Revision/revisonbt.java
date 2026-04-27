@@ -1,4 +1,5 @@
 package Revision;
+import java.util.*;
 
 class BinaryTree {
     static int idx = -1;
@@ -132,6 +133,57 @@ class BinaryTree {
         return true;
     }
 
+    public static class Info2{
+        int hd ;
+        Node node;
+
+        Info2( int hd , Node node){
+            this.hd = hd;
+            this.node = node;
+        }
+    }
+
+    public void topViewOfTree(Node root){
+        Queue <Info2> q1 = new LinkedList<>();
+        HashMap <Integer , Node> map = new HashMap<>();
+
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        q1.add(new Info2(0,root));
+        q1.add(null);
+
+        while(!q1.isEmpty()){
+            Info2 curr = q1.remove();
+            if(curr == null){
+              if(q1.isEmpty()){
+                  break;
+              }else{
+                  q1.add(null);
+              }
+            }else{
+                if(!map.containsKey(curr.hd)){
+                    map.put(curr.hd , curr.node);
+                }
+
+                if(curr.node.left != null){
+                    q1.add(new Info2(curr.hd-1 , curr.node.left));
+                    min = Math.min(curr.hd-1 , min);
+                }
+
+                if(curr.node.right != null){
+                    q1.add(new Info2(curr.hd+1 , curr.node.right));
+                    max = Math.max(curr.hd+1 , max);
+                }
+            }
+
+        }
+
+        for(int i = min; i <= max; i++){
+            System.out.print(map.get(i).data + " ");
+        }
+    }
+
 }
 
 public class revisonbt {
@@ -145,12 +197,12 @@ public class revisonbt {
         root.left.right = new BinaryTree.Node(5);
         root.right.right = new BinaryTree.Node(6);
 
-        BinaryTree.Node root2 = new BinaryTree.Node(2);
-        root2.left = new BinaryTree.Node(4);
-        root2.left.left = new BinaryTree.Node(7);
-        root2.right = new BinaryTree.Node(5);
+//        BinaryTree.Node root2 = new BinaryTree.Node(2);
+//        root2.left = new BinaryTree.Node(4);
+//        root2.left.left = new BinaryTree.Node(7);
+//        root2.right = new BinaryTree.Node(5);
 
-        System.out.println(bt.subtreeOfATree(root, root2));
+        bt.topViewOfTree(root);
 
 
     }
