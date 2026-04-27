@@ -65,30 +65,71 @@ class BinaryTree {
 
     }
 
-    public static class Info{
-        int dia ;
-        int height ;
+    public static class Info {
+        int dia;
+        int height;
 
-        Info( int dia , int height){
-            this.dia = dia ;
-            this.height = height ;
+        Info(int dia, int height) {
+            this.dia = dia;
+            this.height = height;
         }
     }
 
-    public Info findDiameter(Node root){
-        if(root ==  null ){
-            return new Info(0,0); // (diameter , height )
+    public Info findDiameter(Node root) {
+        if (root == null) {
+            return new Info(0, 0); // (diameter , height )
         }
 
         Info leftD = findDiameter(root.left);
         Info rightD = findDiameter(root.right);
 
-        int selfDiameter = leftD.height + rightD.height +1 ;
-        int resDia = Math.max(leftD.dia , Math.max(rightD.dia , selfDiameter));
-        int height = Math.max(leftD.height ,rightD.height)+1;
+        int selfDiameter = leftD.height + rightD.height + 1;
+        int resDia = Math.max(leftD.dia, Math.max(rightD.dia, selfDiameter));
+        int height = Math.max(leftD.height, rightD.height) + 1;
 
-        return new Info(resDia , height);
+        return new Info(resDia, height);
 
+    }
+
+    public Node findNode(Node root1, Node root2) {
+        if (root1 == null) {
+            return null;
+        }
+
+        if (root1.data == root2.data) {
+            return root1;
+        }
+
+        Node findLeft = findNode(root1.left, root2);
+        Node findRight = findNode(root1.right, root2);
+
+        if (findLeft != null) return findLeft;
+        else return findRight;
+    }
+
+    public boolean subtreeOfATree(Node root1, Node root2) {
+        Node dest = findNode(root1, root2);
+        if (dest == null) return false;
+        else return checkSubtree(dest, root2);
+    }
+
+    public boolean checkSubtree(Node parent, Node subroot) {
+        if (parent == null && subroot == null) {
+            return true;
+        }
+
+        if (parent == null || subroot == null || parent.data != subroot.data) {
+            return false;
+        }
+
+        if (!checkSubtree(parent.left, subroot.left)) {
+            return false;
+        }
+        if (!checkSubtree(parent.right, subroot.right)) {
+            return false;
+        }
+
+        return true;
     }
 
 }
@@ -97,18 +138,19 @@ public class revisonbt {
     public static void main(String[] args) {
         BinaryTree bt = new BinaryTree();
         BinaryTree.Node root = new BinaryTree.Node(1);
-
         root.left = new BinaryTree.Node(2);
         root.right = new BinaryTree.Node(3);
-
         root.left.left = new BinaryTree.Node(4);
         root.left.left.left = new BinaryTree.Node(7);
-        root.left.left.left.left = new BinaryTree.Node(8);
         root.left.right = new BinaryTree.Node(5);
-
         root.right.right = new BinaryTree.Node(6);
 
-        System.out.println(bt.findDiameter(root).dia);
+        BinaryTree.Node root2 = new BinaryTree.Node(2);
+        root2.left = new BinaryTree.Node(4);
+        root2.left.left = new BinaryTree.Node(7);
+        root2.right = new BinaryTree.Node(5);
+
+        System.out.println(bt.subtreeOfATree(root, root2));
 
 
     }
