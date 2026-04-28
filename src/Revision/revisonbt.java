@@ -225,6 +225,76 @@ class BinaryTree {
 
     }
 
+    public Node lca(Node root, int n1, int n2) {
+        if (root == null || root.data == n1 || root.data == n2) {
+            return root;
+        }
+
+        Node left = lca(root.left, n1, n2);
+        Node right = lca(root.right, n1, n2);
+
+        if (left == null) {
+            return right;
+        }
+
+        if (right == null) {
+            return left;
+        }
+
+        return root;
+    }
+
+    public int ka(Node root, int target, int k) {
+        if (root == null) {
+            return -1;
+        }
+
+        // target found
+        if (root.data == target) {
+            return 0;
+        }
+
+        int leftK = ka(root.left, target, k);
+        int rightK = ka(root.right, target, k);
+
+        // if target not found in both sides
+        if (leftK == -1 && rightK == -1) {
+            return -1;
+        }
+
+        int dist = Math.max(leftK, rightK) + 1;
+
+        if (dist == k) {
+            System.out.println(root.data);
+        }
+
+        return dist;
+    }
+
+    public void transformTree(Node root){
+        if( root == null){
+            return ;
+        }
+
+        root.data = allSum(root) - root.data;
+        transformTree(root.left);
+        transformTree(root.right);
+    }
+
+    public int allSum(Node root){
+        if( root == null){
+            return 0 ;
+        }
+         int left = allSum(root.left);
+        int right = allSum( root.right);
+
+        return left+right+root.data;
+    }
+
+    public int tt( Node root)
+
+
+
 }
 
 public class revisonbt {
@@ -246,7 +316,7 @@ public class revisonbt {
 //             /
 //            7
 
-        System.out.println(bt.LowestAncestor(root, 7, 5));
+        bt.ka(root, 7, 2);
 
 
     }
