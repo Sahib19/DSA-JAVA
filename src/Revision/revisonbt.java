@@ -271,9 +271,9 @@ class BinaryTree {
         return dist;
     }
 
-    public void transformTree(Node root){
-        if( root == null){
-            return ;
+    public void transformTree(Node root) {
+        if (root == null) {
+            return;
         }
 
         root.data = allSum(root) - root.data;
@@ -281,19 +281,80 @@ class BinaryTree {
         transformTree(root.right);
     }
 
-    public int allSum(Node root){
-        if( root == null){
-            return 0 ;
+    public int allSum(Node root) {
+        if (root == null) {
+            return 0;
         }
-         int left = allSum(root.left);
-        int right = allSum( root.right);
+        int left = allSum(root.left);
+        int right = allSum(root.right);
 
-        return left+right+root.data;
+        return left + right + root.data;
     }
 
-    public int tt( Node root)
+    public int tt(Node root) {
+        if (root == null) {
+            return 0;
+        }
 
+        int left = tt(root.left);
+        int right = tt(root.right);
 
+        int curr = root.data;
+        root.data = left + right;
+
+        return curr + root.data;
+    }
+
+    public boolean Uv(Node root, int data) {
+        if (root == null) {
+            return true;
+        }
+
+        if (root.data != data) {
+            return false;
+        }
+
+        return Uv(root.left, data) && Uv(root.right, data);
+
+    }
+
+    public Node x(Node root, int x) {
+        if (root == null) {
+            return null;
+        }
+
+        root.left = x(root.left, x);
+        root.right = x(root.right, x);
+
+        if (root.left == null && root.right == null && root.data == x) {
+            return null;
+        }
+        return root;
+
+    }
+
+    int maSum = Integer.MIN_VALUE;
+
+    public int maxSum(Node root) {
+        helper(root);
+        return maSum;
+    }
+
+    public int helper(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = helper(root.left);
+        int right = helper(root.right);
+
+        int nodeMax = Math.max(Math.max(root.data + left, root.data + right),
+                Math.max(root.data, root.data + left + right));
+
+        maSum = Math.max(maSum, nodeMax);
+
+        return root.data + Math.max(left, right);
+    }
 
 }
 
