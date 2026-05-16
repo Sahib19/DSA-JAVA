@@ -73,6 +73,28 @@ public class Bst {
         }
         return root;
     }
+
+    public static Node closestValNode = null;
+    public static int closestVal = Integer.MAX_VALUE;
+    public static Node findClosestElement( Node root , int key){
+        if( root == null  ){
+            return closestValNode ;
+        }
+        int newVal = Math.abs(root.data - key) ;
+        if( newVal < closestVal){
+            closestVal = newVal;
+            closestValNode = root ;
+        }
+        if( key < root.data){
+            closestValNode = findClosestElement(root.left , key);
+        }else if ( key > root.data){
+            closestValNode = findClosestElement(root.right ,key);
+        }else{
+            // ki root.data equal hi aa geya key ke
+            return root;
+        }
+        return closestValNode;
+    }
     public static void main (String [] args){
         int [] values = {5,9,6,1,4,2, 15,14,0};
         Node root = null ;
