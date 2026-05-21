@@ -95,6 +95,23 @@ public class Bst {
         }
         return closestValNode;
     }
+    public static boolean search(Node root, int key) {
+
+        if (root == null) {
+            return false;
+        }
+
+        if (root.data == key) {
+            return true;
+        }
+
+        if (key < root.data) {
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
+    }
+
     public static void main (String [] args){
         int [] values = {5,9,6,1,4,2, 15,14,0};
         Node root = null ;
