@@ -3,7 +3,7 @@ package BST;
 public class Bst {
     public static class Node{
         int data;
-        Node left; // by deafult null ata hia inme
+        Node left; // by default null ata hai                                                                                                                                                    in me
         Node right; // by default null come here
 
         Node( int data){
@@ -20,7 +20,6 @@ public class Bst {
         }else{
             root.right = createBST(root.right , value);
         }
-
         return root;
     }
 
@@ -119,9 +118,11 @@ public class Bst {
             root = createBST(root , values[i]);
         }
 
-        inorder(root); System.out.println();
+       /* inorder(root); System.out.println();
         deleteNode(root,41);
-        inorder(root);
+        inorder(root);*/
+
+        // we have a BST with root node as -> root
 
     }
 }
