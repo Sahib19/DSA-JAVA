@@ -12,7 +12,7 @@ public class heap {
             int currIdx = list.size()-1;
             int parentIdx = (currIdx-1)/2;
 
-            while(list.get(parentIdx) > list.get(currIdx) ){
+            while(currIdx > 0 && list.get(parentIdx) > list.get(currIdx) ){
                 // swap both places
                 int temp = list.get(currIdx);
                 list.set(currIdx , list.get(parentIdx));
