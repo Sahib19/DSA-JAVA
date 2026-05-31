@@ -67,19 +67,66 @@ public class heap {
         }
     }
 
+    public static void heapSort( int [] arr){
+        // calling heapify for the non-leaf nodes
+        int n = arr.length;
+        for(int i = (int) (Math.floor(n/2)-1); i >= 0 ; i--){
+            heapify( i , n , arr);
+        }
+
+        // Swaping walla part
+        for( int i = n-1 ; i > 0 ; i--){
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            heapify(0 , i , arr);
+        }
+    }
+
+    public static void heapify(int i , int size , int [] arr){
+        // i --> root (jispr heapify call huya hai )
+        int left = 2*i+1;
+        int right = 2*i+2;
+        int max = i ;
+
+        if( left < size && arr[max] < arr[left]){
+            max = left;
+        }
+
+        if( right < size && arr[max] < arr[right]){
+            max = right;
+        }
+
+        // Swaping min and i (current)
+        if(max != i){
+            int temp =  arr[max];
+            arr[max] = arr[i];
+            arr[i] = temp;
+
+            heapify(max , size , arr);
+        }
+    }
+
 
     public static void main(String [] args){
-        heapDs heap = new heapDs();
-        heap.add(5);
-        heap.add(8);
-        heap.add(2);
-        heap.add(0);
-        System.out.println(heapDs.list);
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
+//        heapDs heap = new heapDs();
+//        heap.add(5);
+//        heap.add(8);
+//        heap.add(2);
+//        heap.add(0);
+//        System.out.println(heapDs.list);
+//        System.out.println(heap.remove());
+//        System.out.println(heap.remove());
+//        System.out.println(heap.remove());
+//        System.out.println(heap.remove());
+//        System.out.println(heap.remove());
+
+        int [] arr = {1,4,6,8,4,5};
+        heapSort(arr);
+        for( int i : arr){
+            System.out.print(i+" ");
+        }
 
     }
 }
