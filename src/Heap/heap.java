@@ -1,7 +1,20 @@
 package Heap;
-import java.util.ArrayList;
+import java.util.*;
+class Student implements Comparable<Student> {
+    int age;
+    String name;
 
+    Student( String name , int age){
+        this.name = name ;
+        this.age = age ;
+    }
+
+    public int compareTo(Student s2){
+        return s2.age- this.age ;
+    }
+}
 public class heap {
+
     public static class heapDs{
         static ArrayList <Integer> list = new ArrayList<>();
 
@@ -110,23 +123,15 @@ public class heap {
 
 
     public static void main(String [] args){
-//        heapDs heap = new heapDs();
-//        heap.add(5);
-//        heap.add(8);
-//        heap.add(2);
-//        heap.add(0);
-//        System.out.println(heapDs.list);
-//        System.out.println(heap.remove());
-//        System.out.println(heap.remove());
-//        System.out.println(heap.remove());
-//        System.out.println(heap.remove());
-//        System.out.println(heap.remove());
+        PriorityQueue <Student > pq = new PriorityQueue<>();
+        pq.add(new Student ("Sahib" , 22));
+        pq.add(new Student ("Arun" , 20));
+        pq.add(new Student ("Khattar" , 26));
 
-        int [] arr = {1,4,6,8,4,5};
-        heapSort(arr);
-        for( int i : arr){
-            System.out.print(i+" ");
+        while(!pq.isEmpty()){
+            System.out.println(pq.remove().name);
         }
+
 
     }
 }

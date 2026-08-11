@@ -84,6 +84,7 @@ public class RecursionProblemSheet {
 //        NumberToWord(0,"2010" , arr);
 //        System.out.println();
 */
-    towerOfHanoi(3,"S","H","D");
+//    towerOfHanoi(3,"S","H","D");
+        System.out.println("Problem Solved --  ready for development phase");
     }
 }
