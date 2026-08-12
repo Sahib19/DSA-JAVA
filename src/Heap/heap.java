@@ -36,88 +36,136 @@ public class heap {
             }
         }
 
-        public int remove(){
+        public int remove(){ // remove ki O(1) + heapify ki O(log n)
             if(list.isEmpty()){
-                System.out.println("Heap is Empty");
+                System.out.println("Your heap is Empty Bro");
                 return -1;
             }
-            int data = list.getFirst();
 
-            // swap last with first
-            list.set(0 , list.getLast());
-            list.set(list.size()-1 , data);
+            int data = list.get(0);
 
-            // removing the last
-            list.removeLast();
+            //Swapping first with last
+            int temp = list.get(list.size()-1);
+            list.set(list.size()-1,list.get(0));
+            list.set(0,temp);
 
+            list.remove(list.size()-1);
+
+            // tree of thik krne ke liye heapify ko call for root index
             heapify(0);
             return data;
         }
 
-        public void heapify(int i){
+        public void heapify(int i ){
             int left = 2*i+1;
             int right = 2*i+2;
+
             int min = i ;
 
-            // tenno me se min ko dundo
-
             if(left < list.size() && list.get(min) > list.get(left)){
-                min = left ;
+                min = left;
             }
+
             if(right < list.size() && list.get(min) > list.get(right)){
-                min = right;
+                min = right ;
             }
 
-            // swap min with current idx that is root
-
-            if( min != i){
-                int temp =  list.get(min);
-                list.set(min , list.get(i));
-                list.set(i , temp);
+            if(min != i ){
+                // enn tenno me jo bhi min nikla hoga usko root se swap krdo
+                int temp = list.get(i);
+                list.set(i , list.get(min));
+                list.set(min , temp);
 
                 heapify(min);
             }
         }
+
+
+//        public int remove(){
+//            if(list.isEmpty()){
+//                System.out.println("Heap is Empty");
+//                return -1;
+//            }
+//            int data = list.getFirst();
+//
+//            // swap last with first
+//            list.set(0 , list.getLast());
+//            list.set(list.size()-1 , data);
+//
+//            // removing the last
+//            list.removeLast();
+//
+//            heapify(0);
+//            return data;
+//        }
+//
+//        public void heapify(int i){
+//            int left = 2*i+1;
+//            int right = 2*i+2;
+//            int min = i ;
+//
+//            // tenno me se min ko dundo
+//
+//            if(left < list.size() && list.get(min) > list.get(left)){
+//                min = left ;
+//            }
+//            if(right < list.size() && list.get(min) > list.get(right)){
+//                min = right;
+//            }
+//
+//            // swap min with current idx that is root
+//
+//            if( min != i){
+//                int temp =  list.get(min);
+//                list.set(min , list.get(i));
+//                list.set(i , temp);
+//
+//                heapify(min);
+//            }
+//        }
     }
 
-    public static void heapSort( int [] arr){
-        // calling heapify for the non-leaf nodes
+    // heap sort + heapify code heapsort oriented
+    public void heapsort(int [] arr){
+        // no need to return anything as we do change in direct array
         int n = arr.length;
-        for(int i = (int) (Math.floor(n/2)-1); i >= 0 ; i--){
-            heapify( i , n , arr);
+
+        // first making max heap from simple arr by calling heapify function for non - leaf nodes
+        for( int i = (int) Math.floor(n/2)-1 ; i >= 0 ; i--){
+            heapify(i , n , arr);
         }
 
-        // Swaping walla part
+        // swapping walla part
         for( int i = n-1 ; i > 0 ; i--){
             int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
+            arr[0] = arr [i];
+            arr[i] = temp ; // the max elemnt goes to last now fix the remainig tree and no need to touch the exsting tree
 
-            heapify(0 , i , arr);
+            heapify(0,i,arr);
         }
     }
 
-    public static void heapify(int i , int size , int [] arr){
-        // i --> root (jispr heapify call huya hai )
+    public void heapify(int i , int size , int[] arr){
+        // i hai jis index ke liye call kiya hia heapify ko
         int left = 2*i+1;
         int right = 2*i+2;
+
         int max = i ;
 
-        if( left < size && arr[max] < arr[left]){
-            max = left;
+        if(left < size && arr[left] > arr[max]){
+            max=left;
         }
 
-        if( right < size && arr[max] < arr[right]){
-            max = right;
+        if( right < size && arr[right] > arr[max]){
+            max=right;
         }
 
-        // Swaping min and i (current)
-        if(max != i){
-            int temp =  arr[max];
+        if(max !=i){
+            int temp = arr[max];
             arr[max] = arr[i];
             arr[i] = temp;
 
-            heapify(max , size , arr);
+            heapify(max,size,arr);
         }
     }
 
